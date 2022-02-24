@@ -15,12 +15,11 @@ using DataType = unsigned int;
 
 class Matrix {
 public:
+    friend ostream &operator<<(ostream &os, const Matrix &m);
+
     Matrix(DataType rows, DataType cols, unsigned modulo);
 
     Matrix(DataType rows, unsigned modulo);
-
-public:
-    friend ostream &operator<<(ostream &os, const Matrix &m);
 
     ~Matrix();
 

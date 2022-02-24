@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Matrix.h"
 
 /**
@@ -8,8 +7,8 @@
  * @return The output stream
  */
 ostream &operator<<(ostream &os, const Matrix &m) {
-    for (int i = 0; i < m.rows; i++) {
-        for (int j = 0; j < m.cols; j++) {
+    for (unsigned i = 0; i < m.rows; i++) {
+        for (unsigned j = 0; j < m.cols; j++) {
             os << m.data[i][j] << " ";
         }
         os << endl;
