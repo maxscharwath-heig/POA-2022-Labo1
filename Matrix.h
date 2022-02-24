@@ -7,7 +7,15 @@
  * @author Crausaz Nicolas & Maxime Scharwath
  */
 class Matrix {
+public:
+    Matrix (unsigned rows, unsigned cols);
+    Matrix(unsigned rows);
 
+    ~Matrix();
+
+private:
+    const unsigned rows, cols;
+    unsigned **data;
 };
 
 
