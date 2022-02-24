@@ -10,24 +10,23 @@ using DataType = unsigned int;
 /**
  * Matrix class
  * This class is used to represent a matrix.
- * @author Crausaz Nicolas & Maxime Scharwath
+ * @author Crausaz Nicolas & Scharwath Maxime
  */
 
 class Matrix {
 public:
-    Matrix (unsigned rows, unsigned cols, unsigned modulo);
-    Matrix(unsigned rows, unsigned modulo);
+    Matrix(DataType rows, DataType cols, unsigned modulo);
 
-   Matrix(unsigned rows);
+    Matrix(DataType rows, unsigned modulo);
 
 public:
-   friend ostream &operator<<(ostream &os, const Matrix &m);
+    friend ostream &operator<<(ostream &os, const Matrix &m);
 
-   ~Matrix();
+    ~Matrix();
 
 private:
-    const unsigned rows, cols;
-    unsigned modulo;
+    const DataType rows, cols;
+    unsigned const modulo;
     DataType **data;
 };
 

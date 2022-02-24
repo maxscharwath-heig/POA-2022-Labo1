@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Matrix.h"
+
 /**
  * Output Flux Operators for the Matrix Class
  * @param os The output stream
@@ -16,16 +17,16 @@ ostream &operator<<(ostream &os, const Matrix &m) {
     return os;
 }
 
-Matrix::Matrix(unsigned int rows, unsigned int cols) : rows(rows), cols(cols) {
-   data = new DataType *[rows];
+Matrix::Matrix(unsigned int rows, unsigned int cols, unsigned int modulo) : rows(rows), cols(cols), modulo(modulo) {
+    data = new DataType *[rows];
 
-   for (unsigned i = 0; i < rows; ++i) {
-      data[i] = new DataType[cols];
-   }
+    for (unsigned i = 0; i < rows; ++i) {
+        data[i] = new DataType[cols];
+    }
 
     for (unsigned i = 0; i < rows; ++i) {
         for (unsigned j = 0; j < cols; ++j) {
-            data[i][j] = (1 + rand() / (RAND_MAX + 1.0) * modulo);
+            data[i][j] = (DataType) (rand() / (RAND_MAX + 1.0) * modulo);
         }
     }
 }
@@ -33,10 +34,8 @@ Matrix::Matrix(unsigned int rows, unsigned int cols) : rows(rows), cols(cols) {
 Matrix::Matrix(unsigned int rows, unsigned modulo) : Matrix(rows, rows, modulo) {}
 
 Matrix::~Matrix() {
-
-   for (unsigned i = 0; i < rows; ++i) {
-      delete[] this->data[i];
-   }
-
-   delete[] data;
+    for (unsigned i = 0; i < rows; ++i) {
+        delete[] this->data[i];
+    }
+    delete[] data;
 }
