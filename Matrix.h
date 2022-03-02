@@ -24,8 +24,6 @@ public:
 
     ~Matrix();
 
-    void duplicate(const Matrix& matrix);
-
     // Operations
     // Addition
         // self
