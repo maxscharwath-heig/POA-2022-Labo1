@@ -66,13 +66,21 @@ void Matrix::copyMatrixData(const Matrix &m) {
 void Matrix::allocateMatrix() {
     data = new DataType *[rows];
     for (unsigned i = 0; i < rows; ++i) {
-        data[i] = new DataType[cols];
+       data[i] = new DataType[cols];
     }
 }
 
 void Matrix::deleteMatrix() {
-    for (unsigned i = 0; i < rows; ++i) {
-        delete[] this->data[i];
-    }
-    delete[] data;
+   for (unsigned i = 0; i < rows; ++i) {
+      delete[] this->data[i];
+   }
+   delete[] data;
+}
+
+Matrix::Matrix(const Matrix &other) {
+   rows = other.rows;
+   cols = other.cols;
+   modulo = other.modulo;
+   allocateMatrix();
+   copyMatrixData(other);
 }
