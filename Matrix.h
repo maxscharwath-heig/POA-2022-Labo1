@@ -15,20 +15,23 @@ using DataType = unsigned int;
 
 class Matrix {
 public:
-    friend ostream &operator<<(ostream &os, const Matrix &m);
-    Matrix& operator=(const Matrix& other);
+   friend ostream &operator<<(ostream &os, const Matrix &m);
 
-    Matrix(DataType rows, DataType cols, unsigned modulo);
+   Matrix &operator=(const Matrix &other);
 
-    Matrix(DataType rows, unsigned modulo);
+   Matrix(DataType rows, DataType cols, unsigned modulo);
 
-    ~Matrix();
+   Matrix(DataType rows, unsigned modulo);
 
-    // Operations
-    // Addition
-        // self
-        // Static
-        // Dynamic
+   Matrix(const Matrix &other);
+
+   ~Matrix();
+
+   // Operations
+   // Addition
+   // self
+   // Static
+   // Dynamic
 
 private:
     DataType rows, cols;

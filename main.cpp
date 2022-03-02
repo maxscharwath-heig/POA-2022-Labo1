@@ -61,15 +61,21 @@ void unit_tests() {
 
     // Multiplication
 
-    // Affectation
-    Matrix m1(3, 8);
-    Matrix m2(3, 8);
+   // Affectation
+   Matrix m1(3, 8);
+   Matrix m2(3, 8);
 
-    cout << m1 << endl << m2 << endl;
+   cout << m1 << endl << m2 << endl;
 
-    m1 = m2;
+   m1 = m2;
 
-    cout << m1;
+   cout << m1;
+
+   // Copy constructor
+   Matrix m3(m1);
+   cout << m3;
+   //verify(m3 == m1);
+   cout << &m1 << "==" << &m3 << "=" << ((&m1 == &m3) ? "True" : "False") << endl;
 }
 
 int main() {
