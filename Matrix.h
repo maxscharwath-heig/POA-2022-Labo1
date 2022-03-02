@@ -33,13 +33,16 @@ public:
         // Dynamic
 
 private:
-    const DataType rows, cols;
-    unsigned const modulo;
+    DataType rows, cols;
+    unsigned modulo;
     DataType **data;
 
 
     // void applyOperation(const Operation& operation, const Matrix& matrix);
     void copyMatrixData(const Matrix& matrix);
+
+    void allocateMatrix();
+    void deleteMatrix();
 };
 
 #endif //LABO_1_MATRIX_H

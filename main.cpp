@@ -20,8 +20,15 @@ void unit_tests() {
 
     // Multiplication
 
+    // Affectation
+    Matrix m1(3, 8);
+    Matrix m2(3, 8);
 
+    cout << m1 << endl << m2 << endl;
 
+    m1 = m2;
+
+    cout << m1;
 }
 
 int main() {

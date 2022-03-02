@@ -27,11 +27,7 @@ Matrix::Matrix(unsigned int rows, unsigned int cols, unsigned int modulo) : rows
         throw runtime_error("Matrix modulo must be greater than 0");
     }
 
-    data = new DataType *[rows];
-
-    for (unsigned i = 0; i < rows; ++i) {
-        data[i] = new DataType[cols];
-    }
+    allocateMatrix();
 
     for (unsigned i = 0; i < rows; ++i) {
         for (unsigned j = 0; j < cols; ++j) {
@@ -43,18 +39,20 @@ Matrix::Matrix(unsigned int rows, unsigned int cols, unsigned int modulo) : rows
 Matrix::Matrix(unsigned int rows, unsigned modulo) : Matrix(rows, rows, modulo) {}
 
 Matrix::~Matrix() {
-    for (unsigned i = 0; i < rows; ++i) {
-        delete[] this->data[i];
+    deleteMatrix();
+}
+
+Matrix &Matrix::operator=(const Matrix &other) {
+    if (this != &other) {
+        rows = other.rows;
+        cols = other.cols;
+        modulo = other.modulo;
+
+        deleteMatrix();
+        allocateMatrix();
+        copyMatrixData(other);
     }
-    delete[] data;
-}
-
-Matrix &Matrix::operator=(const Matrix& other) {
     return *this;
-}
-
-void Matrix::duplicate(const Matrix &matrix) {
-    // Todo: clone a matrix
 }
 
 void Matrix::copyMatrixData(const Matrix &m) {
@@ -63,4 +61,18 @@ void Matrix::copyMatrixData(const Matrix &m) {
             data[i][j] = m.data[i][j];
         }
     }
+}
+
+void Matrix::allocateMatrix() {
+    data = new DataType *[rows];
+    for (unsigned i = 0; i < rows; ++i) {
+        data[i] = new DataType[cols];
+    }
+}
+
+void Matrix::deleteMatrix() {
+    for (unsigned i = 0; i < rows; ++i) {
+        delete[] this->data[i];
+    }
+    delete[] data;
 }
