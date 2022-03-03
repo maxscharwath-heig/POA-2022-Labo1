@@ -19,8 +19,8 @@ ostream &operator<<(ostream &os, const Matrix &m) {
     return os;
 }
 
-Matrix::Matrix(unsigned int rows, unsigned int cols, unsigned int modulo) : rows(
-        rows), cols(cols), modulo(modulo) {
+Matrix::Matrix(unsigned int rows, unsigned int cols, unsigned int modulo) :
+    rows(rows), cols(cols), modulo(modulo) {
 
     // Verify params
     if (rows == 0 || cols == 0) {
@@ -32,12 +32,6 @@ Matrix::Matrix(unsigned int rows, unsigned int cols, unsigned int modulo) : rows
     }
 
     data = allocateMatrix();
-
-    for (unsigned i = 0; i < rows; ++i) {
-        for (unsigned j = 0; j < cols; ++j) {
-            data[i][j] = (DataType) (rand() / (RAND_MAX + 1.0) * modulo);
-        }
-    }
 }
 
 Matrix::Matrix(unsigned int rows, unsigned modulo) : Matrix(rows, rows, modulo) {}
@@ -53,24 +47,31 @@ Matrix &Matrix::operator=(const Matrix &other) {
         modulo = other.modulo;
 
         deleteMatrix();
-        data = allocateMatrix();
-        copyMatrixData(other);
+        data = allocateMatrix(other);
     }
     return *this;
 }
 
-void Matrix::copyMatrixData(const Matrix &m) {
-    for (unsigned i = 0; i < rows; ++i) {
-        for (unsigned j = 0; j < cols; ++j) {
-            data[i][j] = m.data[i][j];
-        }
-    }
-}
+DataType **Matrix::allocateMatrix() const {
+    auto **tmpData = new DataType *[rows];
 
-DataType** Matrix::allocateMatrix() {
-    auto** tmpData = new DataType *[rows];
     for (unsigned i = 0; i < rows; ++i) {
         tmpData[i] = new DataType[cols];
+        for (unsigned j = 0; j < cols; ++j) {
+            tmpData[i][j] = (DataType) (rand() / (RAND_MAX + 1.0) * modulo);
+        }
+    }
+    return tmpData;
+}
+
+DataType **Matrix::allocateMatrix(const Matrix &other) const {
+    auto **tmpData = new DataType *[rows];
+
+    for (unsigned i = 0; i < rows; ++i) {
+        tmpData[i] = new DataType[cols];
+        for (unsigned j = 0; j < cols; ++j) {
+            tmpData[i][j] = other.data[i][j];
+        }
     }
     return tmpData;
 }
@@ -86,8 +87,7 @@ Matrix::Matrix(const Matrix &other) {
     rows = other.rows;
     cols = other.cols;
     modulo = other.modulo;
-    data = allocateMatrix();
-    copyMatrixData(other);
+    data = allocateMatrix(other);
 }
 
 Matrix &Matrix::add(const Matrix &other) {
@@ -156,7 +156,7 @@ void Matrix::operation(const Operation<DataType> &operation, const Matrix &other
         for (unsigned j = 0; j < maxCols; ++j) {
             DataType a = (i < rows && j < cols) ? data[i][j] : 0;
             DataType b = (i < other.rows && j < other.cols) ? other.data[i][j] : 0;
-            tmp[i][j] = operation.execute(a, b);
+            tmp[i][j] = operation.execute(a, b) % modulo;
         }
     }
     deleteMatrix();
@@ -164,5 +164,7 @@ void Matrix::operation(const Operation<DataType> &operation, const Matrix &other
     rows = maxRows;
     cols = maxCols;
 }
+
+
 
 

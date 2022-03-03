@@ -29,19 +29,19 @@ public:
     ~Matrix();
 
     // Operations
-    Matrix& add(const Matrix &other);
+    Matrix &add(const Matrix &other);
 
     Matrix addCopy(const Matrix &other) const;
 
     Matrix *addDyn(const Matrix &other) const;
 
-    Matrix& sub(const Matrix &other);
+    Matrix &sub(const Matrix &other);
 
     Matrix subCopy(const Matrix &other) const;
 
-    Matrix* subDyn(const Matrix &other) const;
+    Matrix *subDyn(const Matrix &other) const;
 
-    Matrix& mult(const Matrix &other);
+    Matrix &mult(const Matrix &other);
 
     Matrix multCopy(const Matrix &other) const;
 
@@ -56,11 +56,9 @@ private:
     unsigned modulo;
     DataType **data;
 
+    DataType **allocateMatrix() const;
 
-    // void applyOperation(const Operation& operation, const Matrix& matrix);
-    void copyMatrixData(const Matrix &matrix);
-
-    DataType** allocateMatrix();
+    DataType **allocateMatrix(const Matrix &other) const;
 
     void deleteMatrix();
 
