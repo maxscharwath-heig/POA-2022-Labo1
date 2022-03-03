@@ -9,6 +9,14 @@
 template<typename T>
 class Operation {
 public:
+   Operation() {
+      std::cout << "Operation constructor" << std::endl;
+   }
+
+   ~Operation() {
+      std::cout << "Operation destructor" << std::endl;
+   }
+
    virtual T execute(T a, T b) const = 0;
 };
 

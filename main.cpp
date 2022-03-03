@@ -81,24 +81,34 @@ void unit_tests() {
 int main() {
     const unsigned MOD = 8;
 
-    cout << "The modulus is " << 8 << endl;
-    cout << "one" << endl;
-    Matrix one = Matrix(3, 4, MOD);
-    cout << one << endl;
+   cout << "The modulus is " << 8 << endl;
+   cout << "one" << endl;
+   Matrix one = Matrix(3, 4, MOD);
+   cout << one << endl;
 
-    cout << "two" << endl;
-    Matrix two = Matrix(3, 5, MOD);
-    cout << two << endl;
+   cout << "two" << endl;
+   Matrix two = Matrix(3, 5, MOD);
+   cout << two << endl;
 
-    cout << "one + two" << endl;
-    //
-    cout << "one - two" << endl;
-    //
-    cout << "one * two" << endl;
-    //
+   cout << "one + two" << endl;
+   Matrix onePlusTwo1 = one.addCopy(two);
+   cout << "addCopy()" << endl << onePlusTwo1 << endl;
 
-    // More specific tests
-    cout << "Tests" << endl;
-    unit_tests();
-    return 0;
+   Matrix oneCopy = one;
+   Matrix onePlusTwo2 = oneCopy.add(two);
+   cout << "add()" << endl << onePlusTwo2 << endl;
+
+   Matrix *onePlusTwo3 = one.addDyn(two);
+   cout << "addDyn()" << endl << *onePlusTwo3 << endl;
+   delete onePlusTwo3;
+   //
+   cout << "one - two" << endl;
+   //
+   cout << "one * two" << endl;
+   //
+
+   // More specific tests
+   cout << "Tests" << endl;
+   unit_tests();
+   return 0;
 }

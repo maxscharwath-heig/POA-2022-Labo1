@@ -29,7 +29,11 @@ public:
    ~Matrix();
 
    // Operations
-   Matrix operator+(const Matrix &other) const;
+   Matrix add(const Matrix &other);
+
+   Matrix addCopy(const Matrix &other) const;
+
+   Matrix *addDyn(const Matrix &other) const;
    // Addition
    // self
    // Static

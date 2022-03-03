@@ -87,10 +87,20 @@ Matrix::Matrix(const Matrix &other) {
    copyMatrixData(other);
 }
 
-Matrix Matrix::operator+(const Matrix &other) const {
+Matrix Matrix::add(const Matrix &other) {
+   static AdditionOperation<DataType> op;
+   operation(op, other);
+   return *this;
+}
+
+Matrix Matrix::addCopy(const Matrix &other) const {
    Matrix result(*this);
-   AdditionOperation<DataType> add;
-   result.operation(add, other);
+   return result.add(other);
+}
+
+Matrix *Matrix::addDyn(const Matrix &other) const {
+   auto *result = new Matrix(*this);
+   result->add(other);
    return result;
 }
 
