@@ -1,7 +1,3 @@
-//
-// Created by Maxime Scharwath on 03.03.2022.
-//
-
 #ifndef LABO_1_OPERATION_H
 #define LABO_1_OPERATION_H
 
