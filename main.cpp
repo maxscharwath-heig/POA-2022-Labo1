@@ -103,9 +103,29 @@ int main() {
    delete onePlusTwo3;
    //
    cout << "one - two" << endl;
+   Matrix oneMinusTwo1 = one.subCopy(two);
+   cout << "subCopy()" << endl << oneMinusTwo1 << endl;
+
+   Matrix oneCopy2 = one;
+   Matrix oneMinusTwo2 = oneCopy2.sub(two);
+   cout << "sub()" << endl << oneMinusTwo2 << endl;
+
+   Matrix *oneMinusTwo3 = one.subDyn(two);
+   cout << "subDyn()" << endl << *oneMinusTwo3 << endl;
+   delete oneMinusTwo3;
    //
    cout << "one * two" << endl;
    //
+   Matrix oneTimesTwo1 = one.multCopy(two);
+   cout << "mulCopy()" << endl << oneTimesTwo1 << endl;
+
+   Matrix oneCopy3 = one;
+   Matrix oneTimesTwo2 = oneCopy3.mult(two);
+   cout << "mul()" << endl << oneTimesTwo2 << endl;
+
+   Matrix *oneTimesTwo3 = one.multDyn(two);
+   cout << "mulDyn()" << endl << *oneTimesTwo3 << endl;
+   delete oneTimesTwo3;
 
    // More specific tests
    cout << "Tests" << endl;
