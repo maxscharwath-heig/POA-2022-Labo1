@@ -55,7 +55,84 @@ void unit_tests() {
     // Matrix carrée
     Matrix carre = Matrix(3, 8);
 
-    // Addition
+    // Addition (self)
+    // Même taille
+    Matrix add1 = Matrix(4, 5, 4);
+    Matrix toAdd1 = Matrix(4, 5, 4);
+    add1.add(toAdd1);
+    cout << add1 << endl;
+    // Taille différente
+
+    // Une matrice totalement plus grande
+    Matrix add2 = Matrix(5, 6, 4);
+    Matrix toAdd2 = Matrix(3, 2, 4);
+    add2.add(toAdd2);
+    cout << add2 << endl;
+
+    // Colonne plus grande
+    Matrix add3 = Matrix(2, 4, 4);
+    Matrix toAdd3 = Matrix(3, 2, 4);
+    add3.add(toAdd3);
+    cout << add3 << endl;
+
+    // Lignes plus grande
+    Matrix add4 = Matrix(4, 2, 4);
+    Matrix toAdd4 = Matrix(6, 2, 4);
+    add4.add(toAdd4);
+    cout << add4 << endl;
+
+
+    // Addition (copie)
+    // Même taille
+    Matrix addCopy1 = Matrix(4, 5, 4);
+    Matrix toAddCopy1 = Matrix(4, 5, 4);
+    cout << addCopy1.addCopy(toAddCopy1) << endl;
+    // Taille différente
+    // Une matrice totalement plus grande
+    Matrix addCopy2 = Matrix(5, 6, 4);
+    Matrix toAddCopy2 = Matrix(3, 2, 4);
+    cout << addCopy2.addCopy(toAddCopy2) << endl;
+
+    // Colonne plus grande
+    Matrix addCopy3 = Matrix(2, 4, 4);
+    Matrix toAddCopy3 = Matrix(3, 2, 4);
+    cout << addCopy3.addCopy(toAddCopy3) << endl;
+
+    // Lignes plus grande
+    Matrix addCopy4 = Matrix(4, 2, 4);
+    Matrix toAddCopy4 = Matrix(6, 2, 4);
+    cout << addCopy4.addCopy(toAddCopy4) << endl;
+
+
+    // Addition (dynamic allocation)
+    // Même taille
+    Matrix addDyn1 = Matrix(4, 5, 4);
+    Matrix toAddDyn1 = Matrix(4, 5, 4);
+    Matrix *dyn1 = addDyn1.addDyn(toAddDyn1);
+    cout << *dyn1 << endl;
+    delete dyn1;
+
+    // Taille différente
+    // Une matrice totalement plus grande
+    Matrix addDyn2 = Matrix(5, 6, 4);
+    Matrix toAddDyn2 = Matrix(3, 2, 4);
+    Matrix *dyn2 = addDyn2.addDyn(toAddDyn2);
+    cout << *dyn2 << endl;
+    delete dyn2;
+
+    // Colonne plus grande
+    Matrix addDyn3 = Matrix(2, 4, 4);
+    Matrix toAddDyn3 = Matrix(3, 2, 4);
+    Matrix *dyn3 = addDyn3.addDyn(toAddDyn3);
+    cout << *dyn3 << endl;
+    delete dyn3;
+
+    // Lignes plus grande
+    Matrix addDyn4 = Matrix(4, 2, 4);
+    Matrix toAddDyn4 = Matrix(6, 2, 4);
+    Matrix *dyn4 = addCopy4.addDyn(toAddCopy4);
+    cout << *dyn4 << endl;
+    delete dyn4;
 
     // Sub
 
