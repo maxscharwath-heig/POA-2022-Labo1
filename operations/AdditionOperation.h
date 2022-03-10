@@ -3,6 +3,12 @@
 
 #include "Operation.h"
 
+/**
+ * Addition operation.
+ * @tparam T
+ * @author Maxime Scharwath
+ * @author Nicolas Crausaz
+ */
 template<typename T>
 class AdditionOperation : public Operation<T> {
 public:
