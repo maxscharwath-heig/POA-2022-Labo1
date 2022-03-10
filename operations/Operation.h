@@ -12,13 +12,13 @@
 template<typename T>
 class Operation {
 public:
-   /**
-    * execute the operation
-    * @param a - first operand
-    * @param b - second operand
-    * @return the result of the operation
-    */
-   virtual T execute(T a, T b) const = 0;
+    /**
+     * execute the operation
+     * @param a - first operand
+     * @param b - second operand
+     * @return the result of the operation
+     */
+    virtual T execute(T a, T b) const = 0;
 };
 
 
