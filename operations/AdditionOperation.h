@@ -12,9 +12,9 @@
 template<typename T>
 class AdditionOperation : public Operation<T> {
 public:
-   T execute(T a, T b) const override {
-      return a + b;
-   }
+    T execute(T a, T b) const override {
+        return a + b;
+    }
 };
 
 
