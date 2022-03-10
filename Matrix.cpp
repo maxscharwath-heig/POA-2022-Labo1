@@ -14,7 +14,7 @@ ostream& operator<<(ostream& os, const Matrix& m) {
 }
 
 Matrix::Matrix(unsigned int rows, unsigned int cols, unsigned int modulo) :
-      rows(rows), cols(cols), modulo(modulo) {
+        rows(rows), cols(cols), modulo(modulo) {
 
     // Verify params
     if (rows <= 0 || cols <= 0) {
@@ -29,7 +29,7 @@ Matrix::Matrix(unsigned int rows, unsigned int cols, unsigned int modulo) :
 }
 
 Matrix::Matrix(unsigned int size, unsigned int modulo) :
-      Matrix(size, size, modulo) {}
+        Matrix(size, size, modulo) {}
 
 Matrix::~Matrix() {
     deleteMatrix();

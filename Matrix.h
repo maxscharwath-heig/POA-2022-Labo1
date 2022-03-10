@@ -56,8 +56,6 @@ public:
      */
     ~Matrix();
 
-    // Operations
-
     /**
      * Addition operator edit the current matrix
      * @param other The matrix to add
