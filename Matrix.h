@@ -24,6 +24,48 @@ public:
     friend ostream& operator<<(ostream& os, const Matrix& m);
 
     /**
+     * Addition operator return a new matrix
+     * @param other The matrix to add
+     * @return the new matrix
+     */
+    friend Matrix add(const Matrix& lhs, const Matrix& rhs);
+
+    /**
+     * Addition operator dynamic version
+     * @param other The matrix to add
+     * @return the new matrix pointer
+     */
+    friend Matrix* addDyn(const Matrix& lhs, const Matrix& rhs);
+
+    /**
+     * Subtraction operator return a new matrix
+     * @param other The matrix to substract
+     * @return the new matrix
+     */
+    friend Matrix sub(const Matrix& lhs, const Matrix& rhs);
+
+    /**
+     * Subtraction operator dynamic version
+     * @param other The matrix to substract
+     * @return the new matrix pointer
+     */
+    friend Matrix* subDyn(const Matrix& lhs, const Matrix& rhs);
+
+    /**
+     * Multiplication operator return a new matrix
+     * @param other The matrix to multiply
+     * @return the new matrix
+     */
+    friend Matrix mult(const Matrix& lhs, const Matrix& rhs);
+
+    /**
+     * Multiplication operator dynamic version
+     * @param other The matrix to multiply
+     * @return the new matrix pointer
+     */
+    friend Matrix* multDyn(const Matrix& lhs, const Matrix& rhs);
+
+    /**
      * Main Constructor for the Matrix Class
      * @param rows The number of rows
      * @param cols The number of columns
@@ -64,20 +106,6 @@ public:
     Matrix& add(const Matrix& other);
 
     /**
-     * Addition operator return a new matrix
-     * @param other The matrix to add
-     * @return the new matrix
-     */
-    Matrix addCopy(const Matrix& other) const;
-
-    /**
-     * Addition operator dynamic version
-     * @param other The matrix to add
-     * @return the new matrix pointer
-     */
-    Matrix* addDyn(const Matrix& other) const;
-
-    /**
      * Subtraction operator edit the current matrix
      * @param other The matrix to substract
      * @return the edited matrix
@@ -85,39 +113,11 @@ public:
     Matrix& sub(const Matrix& other);
 
     /**
-     * Subtraction operator return a new matrix
-     * @param other The matrix to substract
-     * @return the new matrix
-     */
-    Matrix subCopy(const Matrix& other) const;
-
-    /**
-     * Subtraction operator dynamic version
-     * @param other The matrix to substract
-     * @return the new matrix pointer
-     */
-    Matrix* subDyn(const Matrix& other) const;
-
-    /**
      * Multiplication operator edit the current matrix
      * @param other The matrix to multiply
      * @return the edited matrix
      */
     Matrix& mult(const Matrix& other);
-
-    /**
-     * Multiplication operator return a new matrix
-     * @param other The matrix to multiply
-     * @return the new matrix
-     */
-    Matrix multCopy(const Matrix& other) const;
-
-    /**
-     * Multiplication operator dynamic version
-     * @param other The matrix to multiply
-     * @return the new matrix pointer
-     */
-    Matrix* multDyn(const Matrix& other) const;
 
 private:
     unsigned int rows, cols;

@@ -3,6 +3,8 @@
 #include "operations/SubstrationOperation.h"
 #include "operations/MultiplicationOperation.h"
 
+// Friend
+
 ostream& operator<<(ostream& os, const Matrix& m) {
     for (unsigned i = 0; i < m.rows; i++) {
         for (unsigned j = 0; j < m.cols; j++) {
@@ -12,6 +14,41 @@ ostream& operator<<(ostream& os, const Matrix& m) {
     }
     return os;
 }
+
+Matrix add(const Matrix& lhs, const Matrix& rhs) {
+    Matrix result(lhs);
+    return result.add(rhs);
+}
+
+Matrix* addDyn(const Matrix& lhs, const Matrix& rhs) {
+    auto* result = new Matrix(lhs);
+    result->add(rhs);
+    return result;
+}
+
+Matrix sub(const Matrix& lhs, const Matrix& rhs) {
+    Matrix result(lhs);
+    return result.sub(rhs);
+}
+
+Matrix* subDyn(const Matrix& lhs, const Matrix& rhs) {
+    auto* result = new Matrix(lhs);
+    result->sub(rhs);
+    return result;
+}
+
+Matrix mult(const Matrix& lhs, const Matrix& rhs) {
+    Matrix result(lhs);
+    return result.mult(rhs);
+}
+
+Matrix* multDyn(const Matrix& lhs, const Matrix& rhs) {
+    auto* result = new Matrix(lhs);
+    result->mult(rhs);
+    return result;
+}
+
+// Public
 
 Matrix::Matrix(unsigned int rows, unsigned int cols, unsigned int modulo) :
         rows(rows), cols(cols), modulo(modulo) {
@@ -54,6 +91,8 @@ Matrix::Matrix(const Matrix& other) {
     data = allocateMatrix(other);
 }
 
+// Private
+
 DataType** Matrix::allocateMatrix() const {
     auto** tmpData = new DataType* [rows];
 
@@ -91,49 +130,16 @@ Matrix& Matrix::add(const Matrix& other) {
     return *this;
 }
 
-Matrix Matrix::addCopy(const Matrix& other) const {
-    Matrix result(*this);
-    return result.add(other);
-}
-
-Matrix* Matrix::addDyn(const Matrix& other) const {
-    auto* result = new Matrix(*this);
-    result->add(other);
-    return result;
-}
-
 Matrix& Matrix::sub(const Matrix& other) {
     static SubstractionOperation<DataType> op;
     operation(op, other);
     return *this;
 }
 
-Matrix Matrix::subCopy(const Matrix& other) const {
-    Matrix result(*this);
-    return result.sub(other);
-}
-
-Matrix* Matrix::subDyn(const Matrix& other) const {
-    auto* result = new Matrix(*this);
-    result->sub(other);
-    return result;
-}
-
 Matrix& Matrix::mult(const Matrix& other) {
     static MultiplicationOperation<DataType> op;
     operation(op, other);
     return *this;
-}
-
-Matrix Matrix::multCopy(const Matrix& other) const {
-    Matrix result(*this);
-    return result.mult(other);
-}
-
-Matrix* Matrix::multDyn(const Matrix& other) const {
-    auto* result = new Matrix(*this);
-    result->mult(other);
-    return result;
 }
 
 void Matrix::operation(const Operation<DataType>& operation, const Matrix& other) {
