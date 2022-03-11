@@ -128,7 +128,7 @@ private:
      * Allocate a new matrix with random values
      * @return the matrix data pointer
      */
-    DataType** allocateMatrix() const;
+    DataType** allocateMatrixData() const;
 
     /**
      * Allocate a new matrix with the values of another matrix
@@ -136,7 +136,13 @@ private:
      * @param other The matrix to copy
      * @return the matrix data pointer
      */
-    DataType** allocateMatrix(const Matrix& other) const;
+    DataType** allocateMatrixData(const Matrix& other) const;
+
+    /**
+     * Deallocate the matrix data
+     * @warning cols and rows must be set before
+     */
+    void deallocateMatrixData();
 
     /**
      * Initialize the matrix with values from another matrix
@@ -144,11 +150,6 @@ private:
      * @param other The matrix to copy
      */
     void initFrom(const Matrix& other);
-
-    /**
-     * Deallocate the matrix data
-     */
-    void deleteMatrix();
 
     /**
      * Execute an operation on the current matrix

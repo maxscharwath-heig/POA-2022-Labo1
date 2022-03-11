@@ -62,19 +62,19 @@ Matrix::Matrix(unsigned int rows, unsigned int cols, unsigned int modulo) :
         throw runtime_error("Matrix modulo must be greater than 0");
     }
 
-    data = allocateMatrix();
+    data = allocateMatrixData();
 }
 
 Matrix::Matrix(unsigned int size, unsigned int modulo) :
         Matrix(size, size, modulo) {}
 
 Matrix::~Matrix() {
-    deleteMatrix();
+    deallocateMatrixData();
 }
 
 Matrix& Matrix::operator=(const Matrix& other) {
     if (this != &other) {
-        deleteMatrix();
+        deallocateMatrixData();
         initFrom(other);
     }
     return *this;
@@ -90,10 +90,10 @@ void Matrix::initFrom(const Matrix& other) {
     rows = other.rows;
     cols = other.cols;
     modulo = other.modulo;
-    data = allocateMatrix(other);
+    data = allocateMatrixData(other);
 }
 
-DataType** Matrix::allocateMatrix() const {
+DataType** Matrix::allocateMatrixData() const {
     auto** tmpData = new DataType* [rows];
 
     for (unsigned i = 0; i < rows; ++i) {
@@ -105,7 +105,7 @@ DataType** Matrix::allocateMatrix() const {
     return tmpData;
 }
 
-DataType** Matrix::allocateMatrix(const Matrix& other) const {
+DataType** Matrix::allocateMatrixData(const Matrix& other) const {
     auto** tmpData = new DataType* [rows];
 
     for (unsigned i = 0; i < rows; ++i) {
@@ -117,7 +117,7 @@ DataType** Matrix::allocateMatrix(const Matrix& other) const {
     return tmpData;
 }
 
-void Matrix::deleteMatrix() {
+void Matrix::deallocateMatrixData() {
     for (unsigned i = 0; i < rows; ++i) {
         delete[] this->data[i];
     }
@@ -160,7 +160,7 @@ void Matrix::operation(const Operation<DataType>& operation, const Matrix& other
             tmp[i][j] = operation.execute(a, b) % modulo;
         }
     }
-    deleteMatrix();
+    deallocateMatrixData();
     data = tmp;
     rows = maxRows;
     cols = maxCols;
