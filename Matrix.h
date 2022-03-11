@@ -139,6 +139,13 @@ private:
     DataType** allocateMatrix(const Matrix& other) const;
 
     /**
+     * Initialize the matrix with values from another matrix
+     * @details Used by the copy constructor and the operator=
+     * @param other The matrix to copy
+     */
+    void initFrom(const Matrix& other);
+
+    /**
      * Deallocate the matrix data
      */
     void deleteMatrix();

@@ -75,23 +75,23 @@ Matrix::~Matrix() {
 Matrix& Matrix::operator=(const Matrix& other) {
     if (this != &other) {
         deleteMatrix();
-
-        rows = other.rows;
-        cols = other.cols;
-        modulo = other.modulo;
-        data = allocateMatrix(other);
+        initFrom(other);
     }
     return *this;
 }
 
 Matrix::Matrix(const Matrix& other) {
+    initFrom(other);
+}
+
+// Private
+
+void Matrix::initFrom(const Matrix& other) {
     rows = other.rows;
     cols = other.cols;
     modulo = other.modulo;
     data = allocateMatrix(other);
 }
-
-// Private
 
 DataType** Matrix::allocateMatrix() const {
     auto** tmpData = new DataType* [rows];
