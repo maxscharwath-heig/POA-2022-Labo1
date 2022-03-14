@@ -9,6 +9,7 @@ using namespace std;
  */
 void unit_tests() {
     const unsigned MOD = 8;
+    cout << "TESTS" << endl;
     // TEST 1a
     cout << "TEST 1a" << endl;
     try {
@@ -242,10 +243,9 @@ void unit_tests() {
 int main() {
     srand(time(nullptr)); // Initialize random seed
 
-    const unsigned MOD = 8;
-    /*
+    const unsigned MOD = 5;
 
-    cout << "The modulus is " << 8 << endl;
+    cout << "The modulus is " << MOD << endl;
     cout << "one" << endl;
     Matrix one = Matrix(3, 4, MOD);
     cout << one << endl;
@@ -254,46 +254,13 @@ int main() {
     Matrix two = Matrix(3, 5, MOD);
     cout << two << endl;
 
-    cout << "one + two" << endl;
-    Matrix onePlusTwo1 = one.addCopy(two);
-    cout << "addCopy()" << endl << onePlusTwo1 << endl;
+    cout << "one + two" << endl << add(one, two) << endl;
 
-    Matrix oneCopy = one;
-    Matrix onePlusTwo2 = oneCopy.add(two);
-    cout << "add()" << endl << onePlusTwo2 << endl;
+    cout << "one - two" << endl << sub(one, two) << endl;
 
-    Matrix* onePlusTwo3 = one.addDyn(two);
-    cout << "addDyn()" << endl << *onePlusTwo3 << endl;
-    delete onePlusTwo3;
-    //
-    cout << "one - two" << endl;
-    Matrix oneMinusTwo1 = one.subCopy(two);
-    cout << "subCopy()" << endl << oneMinusTwo1 << endl;
-
-    Matrix oneCopy2 = one;
-    Matrix oneMinusTwo2 = oneCopy2.sub(two);
-    cout << "sub()" << endl << oneMinusTwo2 << endl;
-
-    Matrix* oneMinusTwo3 = one.subDyn(two);
-    cout << "subDyn()" << endl << *oneMinusTwo3 << endl;
-    delete oneMinusTwo3;
-    //
-    cout << "one * two" << endl;
-    //
-    Matrix oneTimesTwo1 = one.multCopy(two);
-    cout << "mulCopy()" << endl << oneTimesTwo1 << endl;
-
-    Matrix oneCopy3 = one;
-    Matrix oneTimesTwo2 = oneCopy3.mult(two);
-    cout << "mul()" << endl << oneTimesTwo2 << endl;
-
-    Matrix* oneTimesTwo3 = one.multDyn(two);
-    cout << "mulDyn()" << endl << *oneTimesTwo3 << endl;
-    delete oneTimesTwo3;
-     */
+    cout << "one x two" << endl << mult(one, two) << endl;
 
     // More specific tests
-    cout << "Tests" << endl;
     unit_tests();
     return 0;
 }
