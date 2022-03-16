@@ -21,5 +21,4 @@ public:
     virtual T execute(T a, T b) const = 0;
 };
 
-
 #endif //LABO_1_OPERATION_H

@@ -17,5 +17,4 @@ public:
     }
 };
 
-
 #endif //LABO_1_ADDITIONOPERATION_H

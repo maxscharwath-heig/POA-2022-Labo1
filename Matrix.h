@@ -4,14 +4,13 @@
 #include <iostream>
 #include "operations/Operation.h"
 
-using namespace std;
-
 using DataType = unsigned int; // Data type of the matrix
 
 /**
  * Matrix class
  * This class is used to represent a matrix.
- * @author Crausaz Nicolas & Scharwath Maxime
+ * @author Maxime Scharwath
+ * @author Nicolas Crausaz
  */
 class Matrix {
 public:
@@ -21,7 +20,7 @@ public:
      * @param m The matrix to output
      * @return The output stream
      */
-    friend ostream& operator<<(ostream& os, const Matrix& m);
+    friend std::ostream& operator<<(std::ostream& os, const Matrix& m);
 
     /**
      * Addition operator return a new matrix

@@ -5,12 +5,12 @@
 
 // Friend
 
-ostream& operator<<(ostream& os, const Matrix& m) {
+std::ostream& operator<<(std::ostream& os, const Matrix& m) {
     for (unsigned i = 0; i < m.rows; i++) {
         for (unsigned j = 0; j < m.cols; j++) {
             os << m.data[i][j] << " ";
         }
-        os << endl;
+        os << std::endl;
     }
     return os;
 }
@@ -21,7 +21,7 @@ Matrix add(const Matrix& lhs, const Matrix& rhs) {
 }
 
 Matrix* addDyn(const Matrix& lhs, const Matrix& rhs) {
-    auto* result = new Matrix(lhs);
+    Matrix* result = new Matrix(lhs);
     result->add(rhs);
     return result;
 }
@@ -32,7 +32,7 @@ Matrix sub(const Matrix& lhs, const Matrix& rhs) {
 }
 
 Matrix* subDyn(const Matrix& lhs, const Matrix& rhs) {
-    auto* result = new Matrix(lhs);
+    Matrix* result = new Matrix(lhs);
     result->sub(rhs);
     return result;
 }
@@ -43,7 +43,7 @@ Matrix mult(const Matrix& lhs, const Matrix& rhs) {
 }
 
 Matrix* multDyn(const Matrix& lhs, const Matrix& rhs) {
-    auto* result = new Matrix(lhs);
+    Matrix* result = new Matrix(lhs);
     result->mult(rhs);
     return result;
 }
@@ -52,14 +52,13 @@ Matrix* multDyn(const Matrix& lhs, const Matrix& rhs) {
 
 Matrix::Matrix(unsigned int rows, unsigned int cols, unsigned int modulo) :
         rows(rows), cols(cols), modulo(modulo) {
-
     // Verify params
     if (rows <= 0 || cols <= 0) {
-        throw runtime_error("Matrix dimensions must be greater than 0");
+        throw std::runtime_error("Matrix dimensions must be greater than 0");
     }
 
     if (modulo <= 0) {
-        throw runtime_error("Matrix modulo must be greater than 0");
+        throw std::runtime_error("Matrix modulo must be greater than 0");
     }
 
     data = allocateMatrixData();
@@ -94,7 +93,7 @@ void Matrix::initFrom(const Matrix& other) {
 }
 
 DataType** Matrix::allocateMatrixData() const {
-    auto** tmpData = new DataType* [rows];
+    DataType** tmpData = new DataType* [rows];
 
     for (unsigned i = 0; i < rows; ++i) {
         tmpData[i] = new DataType[cols];
@@ -106,7 +105,7 @@ DataType** Matrix::allocateMatrixData() const {
 }
 
 DataType** Matrix::allocateMatrixData(const Matrix& other) const {
-    auto** tmpData = new DataType* [rows];
+    DataType** tmpData = new DataType* [rows];
 
     for (unsigned i = 0; i < rows; ++i) {
         tmpData[i] = new DataType[cols];
@@ -144,13 +143,13 @@ Matrix& Matrix::mult(const Matrix& other) {
 
 void Matrix::operation(const Operation<DataType>& operation, const Matrix& other) {
     if (modulo != other.modulo) {
-        throw runtime_error("Matrices must have the same modulo");
+        throw std::runtime_error("Matrices must have the same modulo");
     }
 
-    unsigned maxRows = max(rows, other.rows);
-    unsigned maxCols = max(cols, other.cols);
+    unsigned maxRows = std::max(rows, other.rows);
+    unsigned maxCols = std::max(cols, other.cols);
 
-    auto** tmp = new DataType* [maxRows];
+    DataType** tmp = new DataType* [maxRows];
 
     for (unsigned i = 0; i < maxRows; ++i) {
         tmp[i] = new DataType[maxCols];
@@ -165,7 +164,3 @@ void Matrix::operation(const Operation<DataType>& operation, const Matrix& other
     rows = maxRows;
     cols = maxCols;
 }
-
-
-
-
